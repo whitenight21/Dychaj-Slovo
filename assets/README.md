@@ -1,0 +1,1 @@
+# Assets folder echo. echo This folder contains images, icons, and other static files used in the project. echo. echo - covers/ - product cover images echo - images/ - other graphics (banner, icons, images) 
