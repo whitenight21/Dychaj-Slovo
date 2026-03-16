@@ -10,6 +10,15 @@ A complete manual + automation testing playground built on my personal spiritual
 - **Purpose**: Demonstrate end-to-end QA skills for Junior QA / Automation Tester roles
 - **Current Status**: Manual testing + Jira + Git complete | Playwright automation & API testing in progress
 
+### Repository Structure  
+QA/  
+    ├── Screenshots/  ← Jira execution & bug reports  
+    ├── Test-Cases/  ← ISTQB-style manual test cases  
+    ├── Bugs/  ← Detailed defect reports  
+    ├── Automation/   ← Playwright Python scripts  
+    ├── API-Testing/  ← Postman collections  
+    └── README.md   ← This file  
+    
 ### Tools & Technologies Used
 **Core QA Tools**
 - Jira (bug tracking, test cases, sprints)
@@ -45,11 +54,3 @@ A complete manual + automation testing playground built on my personal spiritual
 - Automated Scripts: x (in progress)
 - Browser Coverage: Chrome, Firefox, Mobil
 
-### Repository Structure  
-QA/  
-    ├── Screenshots/  ← Jira execution & bug reports  
-    ├── Test-Cases/  ← ISTQB-style manual test cases  
-    ├── Bugs/  ← Detailed defect reports  
-    ├── Automation/   ← Playwright Python scripts  
-    ├── API-Testing/  ← Postman collections  
-    └── README.md   ← This file  
