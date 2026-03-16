@@ -39,6 +39,12 @@ A complete manual + automation testing playground built on my personal spiritual
 - **API Testing**: Mock endpoints for newsletter and PDF delivery
 - **Documentation**: All test cases and bugs tracked in Jira with screenshots
 
+### Test Coverage Summary
+- Total Test Cases: xx
+- Bugs Found & Reported: xx
+- Automated Scripts: x (in progress)
+- Browser Coverage: Chrome, Firefox, Mobil
+
 ### Repository Structure  
 QA/  
     ├── Screenshots/  ← Jira execution & bug reports  
