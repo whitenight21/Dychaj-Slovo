@@ -1,4 +1,6 @@
 # Assets folder 
-This folder contains images, icons, and other static files used in the project.  
-covers/ - product cover images  
-images/ - other graphics (banner, icons, images)  
+This folder contains two folders with images, icons, and other static files used in the project.  
+
+Folders:  
+**covers/** - product cover images  
+**images/** - other graphics (banner, icons, images)  
