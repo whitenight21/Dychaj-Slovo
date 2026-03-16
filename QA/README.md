@@ -40,7 +40,7 @@ A complete manual + automation testing playground built on my personal spiritual
 - **Documentation**: All test cases and bugs tracked in Jira with screenshots
 
 ### Repository Structure  
-QA/ 
+QA/  
     ├── Screenshots/  ← Jira execution & bug reports  
     ├── Test-Cases/  ← ISTQB-style manual test cases  
     ├── Bugs/  ← Detailed defect reports  
