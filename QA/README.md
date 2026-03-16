@@ -39,4 +39,11 @@ A complete manual + automation testing playground built on my personal spiritual
 - **API Testing**: Mock endpoints for newsletter and PDF delivery
 - **Documentation**: All test cases and bugs tracked in Jira with screenshots
 
-### Repository Structure
+### Repository Structure  
+QA/ 
+    ├── Screenshots/  ← Jira execution & bug reports  
+    ├── Test-Cases/  ← ISTQB-style manual test cases  
+    ├── Bugs/  ← Detailed defect reports  
+    ├── Automation/   ← Playwright Python scripts  
+    ├── API-Testing/  ← Postman collections  
+    └── README.md   ← This file  
