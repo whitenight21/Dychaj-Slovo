@@ -52,5 +52,13 @@ QA/
 - Total Test Cases: xx
 - Bugs Found & Reported: xx
 - Automated Scripts: x (in progress)
-- Browser Coverage: Chrome, Firefox, Mobil
+- Browser Coverage: Chrome, Firefox, Mobile  
+
+### Roadmap – Next Features
+- [ ] Flask backend + real API endpoints
+- [ ] GitHub Actions CI/CD pipeline
+- [ ] BDD with Behave
+- [ ] Performance testing with Playwright
+
+
 
