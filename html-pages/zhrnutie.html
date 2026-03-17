@@ -50,7 +50,7 @@
         <div class="price-line total"><span>Celkovo na úhradu:</span> <strong id="totalPrice">0,00 €</strong></div>
     </div>
     <div class="btn-container">
-        <button class="b back" onclick="location.href='informacie.html'">Späť</button>
+        <button class="b back" onclick="location.href='html-pages/informacie.html'">Späť</button>
         <button class="b" onclick="sendOrder()">Objednať</button>
     </div>
     <div id="status" class="status">Odosielam objednávku...</div>
@@ -142,7 +142,7 @@
                 localStorage.removeItem('cart');
                 localStorage.removeItem('shipping');
                 localStorage.removeItem('billingInfo');
-                setTimeout(() => location.href = 'potvrdenie.html', 2000);
+                setTimeout(() => location.href = 'html-pages/potvrdenie.html', 2000);
             } else throw new Error();
         } catch (err) {
             status.textContent = 'Chyba pri odosielaní. Skúste znova.';
