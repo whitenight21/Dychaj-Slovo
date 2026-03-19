@@ -52,7 +52,7 @@ QA/
 - Total Test Cases: xx
 - Bugs Found & Reported: xx
 - Automated Scripts: x (in progress)
-- Browser Coverage: Chrome, Firefox, Mobile  
+- Browser Coverage: Chrome, Firefox, Mobile (Iphone SE 2022, Samsung A51)
 
 ### Roadmap – Next Features
 - [ ] Flask backend + real API endpoints
