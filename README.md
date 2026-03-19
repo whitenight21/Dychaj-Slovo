@@ -14,7 +14,7 @@ The project helps people slow down, breathe deeply, and let Scripture nourish th
 
 ## Current Features (March 2026)
 
-- Clean, mobile-friendly single-page design
+- Clean, mobile-friendly single-page design  (working on multiple page design - March 19,2026)
 - Product showcase with spiritual e-books and printable worksheets:
   - Personal Spiritual retreats
   - Reflection materials
