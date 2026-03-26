@@ -70,16 +70,18 @@
             z-index: 15;
         }
 
-        /* BACK BUTTON */
+        /* BACK BUTTON - Centered above cards */
         .back-btn {
-            display: inline-block;
+            display: block;
+            margin: 20px auto 40px;
             background: #2c495e;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 28px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            margin-bottom: 30px;
+            text-align: center;
+            max-width: 220px;
             transition: all 0.3s;
         }
         .back-btn:hover {
@@ -103,13 +105,13 @@
             margin-bottom: 15px;
         }
 
-        /* PRODUCT CARDS */
+        /* PRODUCT CARDS - Taller images */
         .products-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            gap: 30px;
             padding: 0 20px;
         }
         .product-card {
@@ -126,7 +128,7 @@
         }
         .product-card img {
             width: 100%;
-            height: 220px;
+            height: 260px;           /* Taller image */
             object-fit: cover;
         }
         .product-card-content {
@@ -137,10 +139,10 @@
             font-family: 'Fredoka', sans-serif;
             font-size: 1.65rem;
             color: #2c495e;
-            margin: 0 0 10px;
+            margin: 0 0 12px;
         }
         .product-card .price {
-            font-size: 18px;
+            font-size: 22px;         /* Larger price */
             font-weight: bold;
             color: #2c495e;
             margin: 8px 0;
@@ -179,13 +181,13 @@
             font-weight: bold;
         }
 
-        /* DETAIL MODAL */
+        /* ALMOST FULL-SCREEN MODAL */
         .detail-modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -197,23 +199,30 @@
         }
         .detail-modal .box {
             background: #fff;
-            border-radius: 14px;
-            max-width: 900px;
-            max-height: 90vh;
+            border-radius: 16px;
+            max-width: 1100px;
             width: 100%;
+            max-height: 92vh;
+            height: auto;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: row;
             overflow: hidden;
-            margin: 10px;
-            box-sizing: border-box;
         }
+
+        @media (max-width: 900px) {
+            .detail-modal .box {
+                flex-direction: column;
+                max-height: 95vh;
+            }
+        }
+
         .detail-modal .close {
             position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 28px;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
             cursor: pointer;
             color: #aaa;
             background: none;
@@ -225,25 +234,25 @@
 
         .modal-left {
             flex: 1;
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #fafaa;
+            background: #fafafa;
             position: relative;
         }
         .image-container {
             position: relative;
             width: 100%;
-            max-height: 380px;
+            max-height: 420px;
             overflow: hidden;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
         .modal-img {
             width: 100%;
-            max-height: 380px;
+            max-height: 420px;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: zoom-in;
             transition: transform 0.3s ease;
         }
@@ -251,47 +260,46 @@
             transform: scale(1.8);
             cursor: zoom-out;
         }
+
         .nav-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             color: #000;
-            width: 44px;
-            height: 44px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             cursor: pointer;
             z-index: 5;
-            user-select: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
         .nav-arrow:hover {
             background: #fff;
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-        .nav-arrow.prev { left: 10px; }
-        .nav-arrow.next { right: 10px; }
+        .nav-arrow.prev { left: 15px; }
+        .nav-arrow.next { right: 15px; }
+
         .thumbnails {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 8px;
+            margin-top: 12px;
         }
         .thumb {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 2px solid #ddd;
+            border: 3px solid #ddd;
             transition: border 0.2s;
         }
         .thumb:hover, .thumb.active {
@@ -300,29 +308,29 @@
 
         .modal-right {
             flex: 1;
-            padding: 24px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
             justify-content: center;
         }
         .modal-right h3 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
             color: #222;
             margin: 0;
         }
         .modal-right .desc {
-            font-size: 15px;
-            line-height: 1.6;
+            font-size: 16px;
+            line-height: 1.65;
             color: #555;
             margin: 0;
         }
         .price-container {
-            margin: 12px 0;
+            margin: 15px 0;
         }
         .modal-right .price {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             color: #2c495e;
         }
@@ -330,13 +338,13 @@
             background: #2c495e;
             color: white;
             border: none;
-            padding: 16px 20px;
+            padding: 16px 24px;
             border-radius: 30px;
             font-size: 17px;
             font-weight: 600;
             cursor: pointer;
             align-self: flex-start;
-            min-width: 200px;
+            min-width: 220px;
             text-align: center;
         }
         .add-to-cart-btn:hover {
@@ -347,6 +355,7 @@
         @media (max-width: 768px) {
             .profile-row { top: -110px; }
             .profile-name { font-size: 38px; bottom: -45px !important; }
+            .modal-right .price { font-size: 28px; }
         }
     </style>
 </head>
@@ -377,12 +386,12 @@
         <p>Vytlačený text poslaný poštou. Digitálny PDF text poslaný na váš e-mail.</p>
     </div>
     
-    <!-- BACK TO HOME -->
-    <a href="../index.html" class="back-btn">← Späť</a>
+    <!-- BACK TO HOME - Centered -->
+    <a href="../index.html" class="back-btn">← Späť na hlavnú stránku</a>
 
     <!-- PRODUCT CARDS -->
     <div class="products-grid">
-        <!-- First product - Advent -->
+        <!-- Advent -->
         <div class="product-card" onclick="openProductDetail(
             'Rodinné Zamyslenia na Advent - Čítaj, Modli sa, Vyfarbuj, Tvor - Deti 2+',
             '15 €',
@@ -397,7 +406,7 @@
             </div>
         </div>
 
-        <!-- Second product - Pôst -->
+        <!-- Pôst -->
         <div class="product-card" onclick="openProductDetail(
             'Pôst - Čítaj, Modli sa, Vyfarbuj, Miluj - Deti 3+',
             '15 €',
@@ -462,7 +471,6 @@
             closeDetail();
         }
 
-        // Modal functions
         let galleryImages = [];
         let currentIndex = 0;
 
@@ -542,7 +550,6 @@
             if (e.target === this) closeDetail();
         });
 
-        // Initialize
         updateCartCount();
     </script>
 </body>
