@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anglické Knihy na Amazone – Dýchaj Slovo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Use the exact same <style> block as in uvahy.html above */
+        /* (Copy the entire <style> from uvahy.html here to keep consistency) */
+    </style>
+</head>
+<body>
+
+    <!-- FIXED CART BUTTON -->
+    <button class="cart-btn" onclick="window.location.href='../html-pages/kosik.html'">
+        Košík
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- HEADER -->
+    <div class="header">
+        <img src="../assets/images/banner.png" alt="Dýchaj Slovo Banner" class="banner">
+        <div class="profile-row">
+            <div class="profile-left">
+                <img src="../assets/images/profile.jpg" alt="Mathias" class="profile-overlap">
+            </div>
+            <div class="profile-name">Dýchaj Slovo</div>
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-top">
+        <h2>Anglické Knihy na Amazone</h2>
+        <p>Objavte anglické knihy a Kindle Ebooky s duchovnou tematikou od autora <strong>Mathias Gocik</strong> na Amazone.</p>
+    </div>
+    
+    <!-- BACK TO HOME -->
+    <a href="../index.html" class="back-btn">Späť domov</a>
+
+    <!-- PRODUCT CARDS -->
+    <div class="products-grid">
+        <div class="product-card" onclick="openProductDetail(
+            'Anglické knihy na Amazone',
+            '',
+            'Prezrite si tieto ako aj iné diela s duchovnou tematikou od Mathiasa Gocika na Amazone.',
+            '../assets/covers/AMAZONcover.png',
+            ['../assets/images/amazon1.jpg', '../assets/images/amazon2.jpg', '../assets/images/amazon3.jpg', '../assets/images/amazon4.jpg']
+        )">
+            <img src="../assets/covers/AMAZONcover.png" alt="Amazon Cover">
+            <div class="product-card-content">
+                <h3>Anglické duchovné Knihy a Kindle Ebooky</h3>
+                <div class="price">5 € - 25 €</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL + SCRIPTS -->
+    <!-- Copy the full modal + script section from uvahy.html here -->
+</body>
+</html>
