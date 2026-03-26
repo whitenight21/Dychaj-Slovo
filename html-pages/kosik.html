@@ -6,68 +6,165 @@
     <title>Váš košík – Dýchaj Slovo</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* tvoj pôvodný CSS – nemenný */
-        body {font-family:'Open Sans',sans-serif;margin:40px;background:#f4f4f4;color:#333}
-        .c {max-width:800px;margin:auto;background:#fff;padding:30px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
-        h1 {font-family:'Fredoka',sans-serif;color:#2c495e;text-align:center;margin-bottom:20px}
-        .i {display:flex;gap:15px;padding:18px 0;border-bottom:1px solid #eee;align-items:flex-start;position:relative}
-        .i img {width:80px;height:80px;object-fit:contain;border-radius:6px;flex-shrink:0}
-        .info {flex:1;display:flex;flex-direction:column;gap:4px}
-        .info strong {font-size:16px;margin:0;display:flex;justify-content:space-between;align-items:center;gap:10px}
-        .remove {background:#ff4444;color:#fff;width:26px;height:26px;border-radius:50%;border:none;font-weight:bold;cursor:pointer;font-size:13px}
-        .remove:hover {background:#cc0000}
-        .price {font-weight:600;color:#2c495e;font-size:15px}
-        .qty {display:flex;align-items:center;gap:8px;margin-top:6px}
-        .qty button {width:32px;height:32px;border:1px solid #ddd;background:#f9f9f9;color:#333;font-weight:bold;border-radius:6px;cursor:pointer}
-        .qty button:hover {background:#eee}
-        .qty input {width:40px;height:32px;text-align:center;border:1px solid #ddd;border-radius:6px;font-weight:600}
-        .t {font-weight:600;font-size:18px;text-align:right;margin:25px 0}
-        .btn-container {display:flex;gap:15px;justify-content:center;margin-top:30px}
-        .b {background:#2c495e;color:#fff;padding:12px 20px;border:none;border-radius:30px;cursor:pointer;font-weight:600;flex:1;max-width:200px;text-align:center;transition:all .3s}
-        .b:hover {background:#3fcfd5}
-        .back {background:#aaa}
-        .back:hover {background:#999}
-        @media(max-width:480px){.btn-container{flex-wrap:nowrap;overflow-x:auto;padding:0 10px}.b{min-width:140px}}
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 40px;
+            background: #f4f4f4;
+            color: #333;
+        }
+        .c {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.1);
+        }
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            color: #2c495e;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .i {
+            display: flex;
+            gap: 15px;
+            padding: 18px 0;
+            border-bottom: 1px solid #eee;
+            align-items: flex-start;
+            position: relative;
+        }
+        .i img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        .info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .info strong {
+            font-size: 16px;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .remove {
+            background: #ff4444;
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .remove:hover { background: #cc0000; }
+        .price { font-weight: 600; color: #2c495e; font-size: 15px; }
+        .qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .qty button {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+            color: #333;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .qty button:hover { background: #eee; }
+        .qty input {
+            width: 40px;
+            height: 32px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .t {
+            font-weight: 600;
+            font-size: 18px;
+            text-align: right;
+            margin: 25px 0;
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .b {
+            background: #2c495e;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            flex: 1;
+            max-width: 200px;
+            text-align: center;
+            transition: all .3s;
+        }
+        .b:hover { background: #3fcfd5; }
+        .back { background: #aaa; }
+        .back:hover { background: #999; }
+
+        @media (max-width: 480px) {
+            .btn-container { flex-wrap: wrap; }
+            .b { min-width: 140px; }
+        }
     </style>
 </head>
 <body>
+
 <div class="c">
     <h1>Váš košík</h1>
     <div id="items"></div>
-    <div class="t">Spolu: <span id="total">€0.00</span></div>
+    <div class="t" id="totalRow" style="display:none;">
+        Spolu: <span id="total">€0.00</span>
+    </div>
     <div class="btn-container">
-        <button class="b back" onclick="location.href='../index.html'">Späť</button>
-        <button class="b" onclick="location.href='../html-pages/doprava.html'" id="continueBtn" style="display:none;">Pokračovať</button>
+        <button class="b back" onclick="location.href='../index.html'">Späť domov</button>
+        <button class="b" onclick="location.href='../html-pages/doprava.html'" id="continueBtn" style="display:none;">
+            Pokračovať
+        </button>
     </div>
 </div>
 
 <script>
+    // Load cart fresh every time
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // ← FIX: konverzia starých položiek (ak mali qty → quantity)
-    cart = cart.map(item => {
-        if (item.qty && !item.quantity) item.quantity = item.qty;
-        if (!item.quantity) item.quantity = 1;
-        return item;
-    });
-
     const container = document.getElementById('items');
+    const totalRow = document.getElementById('totalRow');
     const continueBtn = document.getElementById('continueBtn');
 
     function renderCart() {
         container.innerHTML = '';
-        let total = 0;
 
         if (cart.length === 0) {
-            container.innerHTML = '<p style="text-align:center;color:#888;padding:40px 0;">Košík je prázdny.</p>';
+            container.innerHTML = '<p style="text-align:center;color:#888;padding:60px 0;font-size:17px;">Váš košík je prázdny.</p>';
+            totalRow.style.display = 'none';
             continueBtn.style.display = 'none';
-            document.querySelector('.t').style.display = 'none';
             document.getElementById('total').textContent = '€0.00';
+            updateCartCount();
             return;
         }
 
-        document.querySelector('.t').style.display = 'block';
-        continueBtn.style.display = 'block';
+        let total = 0;
 
         cart.forEach((item, index) => {
             const priceNum = parseFloat(item.price.replace(/[^0-9.,]/g, '').replace(',', '.')) || 0;
@@ -78,7 +175,7 @@
             const div = document.createElement('div');
             div.className = 'i';
             div.innerHTML = `
-                <img src="${item.img}" alt="${item.title}">
+                <img src="${item.img || ''}" alt="${item.title}">
                 <div class="info">
                     <strong>
                         ${item.title}
@@ -90,7 +187,7 @@
                         <input type="number" value="${qty}" min="1" readonly>
                         <button onclick="changeQty(${index}, 1)">+</button>
                     </div>
-                    <div style="margin-top:6px;font-weight:600;color:#2c495e;">
+                    <div style="margin-top:8px;font-weight:600;color:#2c495e;">
                         Spolu: €${itemTotal.toFixed(2)}
                     </div>
                 </div>
@@ -99,16 +196,18 @@
         });
 
         document.getElementById('total').textContent = `€${total.toFixed(2)}`;
+        totalRow.style.display = 'block';
+        continueBtn.style.display = 'block';
+
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
     }
 
     function changeQty(index, change) {
-        const newQty = cart[index].quantity + change;
-        if (newQty >= 1) {
-            cart[index].quantity = newQty;
-            renderCart();
-        }
+        let newQty = (cart[index].quantity || 1) + change;
+        if (newQty < 1) newQty = 1;
+        cart[index].quantity = newQty;
+        renderCart();
     }
 
     function removeItem(index) {
@@ -117,11 +216,19 @@
     }
 
     function updateCartCount() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const btn = parent.document.getElementById('cartCount') || document.getElementById('cartCount');
-        if (btn) btn.textContent = totalItems;
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        const countEl = document.getElementById('cartCount');
+        if (countEl) countEl.textContent = totalItems;
+
+        // Also try to update index page count
+        try {
+            if (window.parent && window.parent.document.getElementById('cartCount')) {
+                window.parent.document.getElementById('cartCount').textContent = totalItems;
+            }
+        } catch(e) {}
     }
 
+    // Run when page loads
     renderCart();
 </script>
 </body>
