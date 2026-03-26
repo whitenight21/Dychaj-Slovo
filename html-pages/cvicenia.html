@@ -405,8 +405,138 @@
         </div>
     </div>
 
-    <!-- DETAIL MODAL + SCRIPTS (same as above) -->
-    <!-- (Copy the entire modal + script section from uvahy.html or deti.html here) -->
-    <!-- For brevity, use the exact same modal and script block as in uvahy.html above -->
+    
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" class="detail-modal">
+        <div class="box">
+            <button class="close" onclick="closeDetail()">x</button>
+            <div class="modal-left">
+                <div class="image-container">
+                    <div class="nav-arrow prev" onclick="changeImage(-1)"><</div>
+                    <img id="modalImg" class="modal-img" src="" alt="" onclick="toggleZoom()">
+                    <div class="nav-arrow next" onclick="changeImage(1)">></div>
+                </div>
+                <div class="thumbnails" id="thumbnails"></div>
+            </div>
+            <div class="modal-right">
+                <h3 id="modalTitle"></h3>
+                <p class="desc" id="modalDesc"></p>
+                <div class="price-container">
+                    <div class="price" id="modalPrice"></div>
+                </div>
+                <button class="add-to-cart-btn" id="addToCartBtn" style="display:none">Do košíka</button>
+                <a id="amazonLink" href="https://www.amazon.com/stores/Mathias-Gocik/author/B0DZJ1WPP2" target="_blank" style="display:none">
+                    <button class="detail-btn amazon-btn" style="margin-top:10px;width:100%">Pozrieť na Amazone</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+  
+    <!-- SCRIPTS -->
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            const el = document.getElementById('cartCount');
+            if (el) el.textContent = totalItems;
+        }
+
+        function addToCart(title, price, img) {
+            const existing = cart.find(item => item.title === title);
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({ title, price, img, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert('Pridané do košíka!');
+            closeDetail();
+        }
+
+        let galleryImages = [];
+        let currentIndex = 0;
+
+        function openProductDetail(title, price, desc, img, previewList) {
+            galleryImages = previewList;
+            currentIndex = previewList.indexOf(img) !== -1 ? previewList.indexOf(img) : 0;
+
+            document.getElementById('modalImg').src = galleryImages[currentIndex];
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('modalDesc').textContent = desc;
+
+            const addBtn = document.getElementById('addToCartBtn');
+            const amazonLink = document.getElementById('amazonLink');
+
+            if (title.includes('Amazon')) {
+                addBtn.style.display = 'none';
+                amazonLink.style.display = 'block';
+            } else {
+                addBtn.style.display = 'block';
+                amazonLink.style.display = 'none';
+                addBtn.onclick = () => addToCart(title, price, img);
+            }
+
+            const thumbs = document.getElementById('thumbnails');
+            thumbs.innerHTML = '';
+            galleryImages.forEach((src, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = 'thumb';
+                if (i === currentIndex) thumb.classList.add('active');
+                thumb.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIndex = i;
+                    document.getElementById('modalImg').src = src;
+                    updateThumbnails();
+                    resetZoom();
+                };
+                thumbs.appendChild(thumb);
+            });
+
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeDetail() {
+            document.getElementById('detailModal').classList.remove('active');
+            resetZoom();
+        }
+
+        function changeImage(step) {
+            currentIndex = (currentIndex + step + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImg').src = galleryImages[currentIndex];
+            updateThumbnails();
+            resetZoom();
+        }
+
+        function updateThumbnails() {
+            document.querySelectorAll('.thumb').forEach((t, i) => {
+                t.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function toggleZoom() {
+            const img = document.getElementById('modalImg');
+            img.classList.toggle('zoomed');
+        }
+
+        function resetZoom() {
+            document.getElementById('modalImg').classList.remove('zoomed');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDetail();
+        });
+
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDetail();
+        });
+
+        updateCartCount();
+    </script>
+    
 </body>
 </html>
