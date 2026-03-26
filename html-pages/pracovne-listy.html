@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detské Pracovné Listy – Dýchaj Slovo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        /* HEADER */
+        .header {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+        .banner {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: block;
+        }
+        .profile-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            gap: 18px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            top: -140px;
+            z-index: 10;
+        }
+        .profile-left {
+            display: flex;
+            align-items: flex-end;
+            margin-left: 15px;
+        }
+        .profile-overlap {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+        .profile-name {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 50px;
+            color: #222;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0;
+            line-height: 1;
+            padding-bottom: 8px;
+            white-space: nowrap;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+        }
+
+        /* BACK BUTTON - Centered */
+        .back-btn {
+            display: block;
+            margin: 20px auto 40px;
+            background: #2c495e;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            max-width: 220px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: #3fcfd5;
+        }
+
+        /* INTRO */
+        .intro-top {
+            max-width: 900px;
+            margin: -90px auto 60px;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 5;
+        }
+        .intro-top h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 32px;
+            color: #2c495e;
+            margin-bottom: 15px;
+        }
+
+        /* PRODUCT CARDS - Taller images */
+        .products-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+        }
+        .product-card img {
+            width: 100%;
+            height: 260px;           /* Taller image */
+            object-fit: cover;
+        }
+        .product-card-content {
+            padding: 20px;
+            text-align: center;
+        }
+        .product-card h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.65rem;
+            color: #2c495e;
+            margin: 0 0 12px;
+        }
+        .product-card .price {
+            font-size: 22px;         /* Larger price */
+            font-weight: bold;
+            color: #2c495e;
+            margin: 8px 0;
+        }
+
+        /* FIXED CART BUTTON */
+        .cart-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: #2c495e;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-size: 14px;
+        }
+        .cart-btn:hover { background: #3fcfd5; }
+        .cart-count {
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* ALMOST FULL-SCREEN MODAL */
+        .detail-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .detail-modal.active {
+            display: flex;
+        }
+        .detail-modal .box {
+            background: #fff;
+            border-radius: 16px;
+            max-width: 1100px;
+            width: 100%;
+            max-height: 92vh;
+            height: auto;
+            position: relative;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .detail-modal .box {
+                flex-direction: column;
+                max-height: 95vh;
+            }
+        }
+
+        .detail-modal .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #aaa;
+            background: none;
+            border: none;
+            z-index: 10;
+            font-weight: bold;
+        }
+        .detail-modal .close:hover { color: #000; }
+
+        .modal-left {
+            flex: 1;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fafafa;
+            position: relative;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-height: 420px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .modal-img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: contain;
+            border-radius: 12px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+        .modal-img.zoomed {
+            transform: scale(1.8);
+            cursor: zoom-out;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        .nav-arrow:hover {
+            background: #fff;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .nav-arrow.prev { left: 15px; }
+        .nav-arrow.next { right: 15px; }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 12px;
+        }
+        .thumb {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid #ddd;
+            transition: border 0.2s;
+        }
+        .thumb:hover, .thumb.active {
+            border-color: #2c495e;
+        }
+
+        .modal-right {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            justify-content: center;
+        }
+        .modal-right h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #222;
+            margin: 0;
+        }
+        .modal-right .desc {
+            font-size: 16px;
+            line-height: 1.65;
+            color: #555;
+            margin: 0;
+        }
+        .price-container {
+            margin: 15px 0;
+        }
+        .modal-right .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c495e;
+        }
+        .add-to-cart-btn {
+            background: #2c495e;
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            align-self: flex-start;
+            min-width: 220px;
+            text-align: center;
+        }
+        .add-to-cart-btn:hover {
+            background: #3fcfd5;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .profile-row { top: -110px; }
+            .profile-name { font-size: 38px; bottom: -45px !important; }
+            .modal-right .price { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FIXED CART BUTTON -->
+    <button class="cart-btn" onclick="window.location.href='../html-pages/kosik.html'">
+        Košík
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- HEADER -->
+    <div class="header">
+        <img src="../assets/images/banner.png" alt="Dýchaj Slovo Banner" class="banner">
+        <div class="profile-row">
+            <div class="profile-left">
+                <img src="../assets/images/profile.jpg" alt="Mathias" class="profile-overlap">
+            </div>
+            <div class="profile-name">Dýchaj Slovo</div>
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-top">
+        <h2>Detské Pracovné Listy</h2>
+        <p>Praktické a hravé pracovné listy pre deti. Obsahujú aktivity, úlohy a omaľovánky.</p>
+        <p>Všetko pripravené na zábavné chvíle doma.</p>
+        <p>Produkt je <b>digitálny PDF</b> - sa posiela na váš e-mail.</p>
+    </div>
+    
+    <!-- BACK TO HOME - Centered -->
+    <a href="../index.html" class="back-btn">← Späť na hlavnú stránku</a>
+
+    <!-- PRODUCT CARDS -->
+    <div class="products-grid">
+        <!-- Pôst - Vyfarbuj -->
+        <div class="product-card" onclick="openProductDetail(
+            'Pôst - Vyfarbuj (47 omaľovániek)',
+            '5 €',
+            'PDF Súbor 47 omaľovaniek na Pôst pre deti 2-5 rokov. A4 formát. PDF formát, 49 strán. PDF poslaný na váš e-mail',
+            '../assets/covers/VYFARBUJcover.png',
+            ['../assets/covers/VYFARBUJcover.png', '../assets/images/post-vyfarbuj3.png', '../assets/images/post-vyfarbuj2.png']
+        )">
+            <img src="../assets/covers/VYFARBUJcover.png" alt="Vyfarbuj Cover">
+            <div class="product-card-content">
+                <h3>Pôst - Vyfarbuj (47 omaľovániek)</h3>
+                <div class="price">5 €</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" class="detail-modal">
+        <div class="box">
+            <button class="close" onclick="closeDetail()">x</button>
+            <div class="modal-left">
+                <div class="image-container">
+                    <div class="nav-arrow prev" onclick="changeImage(-1)"><</div>
+                    <img id="modalImg" class="modal-img" src="" alt="" onclick="toggleZoom()">
+                    <div class="nav-arrow next" onclick="changeImage(1)">></div>
+                </div>
+                <div class="thumbnails" id="thumbnails"></div>
+            </div>
+            <div class="modal-right">
+                <h3 id="modalTitle"></h3>
+                <p class="desc" id="modalDesc"></p>
+                <div class="price-container">
+                    <div class="price" id="modalPrice"></div>
+                </div>
+                <button class="add-to-cart-btn" id="addToCartBtn" style="display:none">Do košíka</button>
+                <a id="amazonLink" href="https://www.amazon.com/stores/Mathias-Gocik/author/B0DZJ1WPP2" target="_blank" style="display:none">
+                    <button class="detail-btn amazon-btn" style="margin-top:10px;width:100%">Pozrieť na Amazone</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            const el = document.getElementById('cartCount');
+            if (el) el.textContent = totalItems;
+        }
+
+        function addToCart(title, price, img) {
+            const existing = cart.find(item => item.title === title);
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({ title, price, img, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert('Pridané do košíka!');
+            closeDetail();
+        }
+
+        let galleryImages = [];
+        let currentIndex = 0;
+
+        function openProductDetail(title, price, desc, img, previewList) {
+            galleryImages = previewList;
+            currentIndex = previewList.indexOf(img) !== -1 ? previewList.indexOf(img) : 0;
+
+            document.getElementById('modalImg').src = galleryImages[currentIndex];
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('modalDesc').textContent = desc;
+
+            const addBtn = document.getElementById('addToCartBtn');
+            const amazonLink = document.getElementById('amazonLink');
+
+            if (title.includes('Amazon')) {
+                addBtn.style.display = 'none';
+                amazonLink.style.display = 'block';
+            } else {
+                addBtn.style.display = 'block';
+                amazonLink.style.display = 'none';
+                addBtn.onclick = () => addToCart(title, price, img);
+            }
+
+            const thumbs = document.getElementById('thumbnails');
+            thumbs.innerHTML = '';
+            galleryImages.forEach((src, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = 'thumb';
+                if (i === currentIndex) thumb.classList.add('active');
+                thumb.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIndex = i;
+                    document.getElementById('modalImg').src = src;
+                    updateThumbnails();
+                    resetZoom();
+                };
+                thumbs.appendChild(thumb);
+            });
+
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeDetail() {
+            document.getElementById('detailModal').classList.remove('active');
+            resetZoom();
+        }
+
+        function changeImage(step) {
+            currentIndex = (currentIndex + step + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImg').src = galleryImages[currentIndex];
+            updateThumbnails();
+            resetZoom();
+        }
+
+        function updateThumbnails() {
+            document.querySelectorAll('.thumb').forEach((t, i) => {
+                t.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function toggleZoom() {
+            const img = document.getElementById('modalImg');
+            img.classList.toggle('zoomed');
+        }
+
+        function resetZoom() {
+            document.getElementById('modalImg').classList.remove('zoomed');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDetail();
+        });
+
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDetail();
+        });
+
+        updateCartCount();
+    </script>
+</body>
+</html>
