@@ -48,7 +48,7 @@
             gap: 6px;
             box-shadow: 0 3px 8px rgba(0,0,0,0.2);
             z-index: 1000;
-            font-size: 20px;             /* Larger font size */
+            font-size: 20px;
         }
         .cart-btn:hover { background: #3fcfd5; }
         .cart-count {
@@ -57,7 +57,7 @@
             border-radius: 50%;
             width: 18px;
             height: 18px;
-            font-size: 16px;            /* Larger font size */
+            font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -93,7 +93,7 @@
         .profile-name {
             font-family: 'Fredoka', sans-serif;
             font-weight: 600;
-            font-size: 60px;                  /* Larger font size */           
+            font-size: 60px;
             color: #222;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin: 0;
@@ -111,7 +111,7 @@
             max-width: 900px;
             margin: -90px auto 60px;
             text-align: center;
-            font-size: 22px;                 /* Larger font size */
+            font-size: 22px;
             line-height: 1.6;
             position: relative;
             z-index: 5;
@@ -120,7 +120,7 @@
         .intro-top b { font-weight: 600; }
         .intro-top i { font-style: italic; }
 
-        /* CATEGORIES - 5 VISUAL CARDS */
+        /* CATEGORIES */
         .categories {
             max-width: 1200px;
             margin: 0 auto 80px;
@@ -138,18 +138,18 @@
             text-decoration: none;
             color: inherit;
             display: block;
+            border: 2px solid #eee;
         }
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+            border-color: #2c495e;
         }
         .card img {
             width: 100%;
-            height: 380px;           /* Taller image */
+            height: 380px;
             object-fit: cover;
-            margin: 20px auto;
             display: block;
-            border-radius: 4px;
         }
         .card-content {
             padding: 20px;
@@ -167,7 +167,6 @@
             font-size: 15px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .profile-row { top: -110px; }
             .profile-name { font-size: 38px; bottom: -45px !important; }
@@ -225,7 +224,7 @@
             <img src="assets/covers/ADVENT-UVAHYcover.jpeg" alt="Denné Úvahy">
             <div class="card-content">
                 <h3>Biblické Úvahy</h3>
-                <p>Denné zamyslenia nad Božím Slovom podľa liturgikého obdobia</p>
+                <p>Denné zamyslenia nad Božím Slovom podľa liturgického obdobia</p>
             </div>
         </a>
 
@@ -253,9 +252,33 @@
         <p>dychajslovo@gmail.com</p>
         <p>+421944338237</p>
         <div class="social-links" style="margin-top:20px;">
-            <a href="https://facebook.com/profile.php?id=61581374472536" target="_blank"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.407.593 24 1.324 24h11.494v-9.294H9.689v-3.622h3.129V8.412c0-3.1 1.893-4.788 4.657-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.324V1.324C24 .593 23.407 0 22.676 0z"/></svg></a>
-            <a href="https://instagram.com/dychajslovo" target="_blank"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.697.272 1.052 1.936 1.052 6.292c0 1.28-.014 1.688-.072 2.968C.88 13.616.272 15.26.272 19.616c0 4.357.608 5.997 2.34 5.997.73.058 1.138.072 3.332.072 3.259 0 3.667-.014 4.947.072 4.357-.2 5.997-.808 5.997-2.34 0-1.28.014-1.688.072-2.968.1-4.357.708-5.997 2.34-5.997.73-.058 1.138-.072 3.332-.072z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
-            <a href="https://x.com/DychajSlovo" target="_blank"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <!-- your social icons -->
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" class="detail-modal">
+        <div class="box">
+            <button class="close" onclick="closeDetail()">x</button>
+            <div class="modal-left">
+                <div class="image-container">
+                    <div class="nav-arrow prev" onclick="changeImage(-1)"><</div>
+                    <img id="modalImg" class="modal-img" src="" alt="" onclick="toggleZoom()">
+                    <div class="nav-arrow next" onclick="changeImage(1)">></div>
+                </div>
+                <div class="thumbnails" id="thumbnails"></div>
+            </div>
+            <div class="modal-right">
+                <h3 id="modalTitle"></h3>
+                <p class="desc" id="modalDesc"></p>
+                <div class="price-container">
+                    <div class="price" id="modalPrice"></div>
+                </div>
+                <button class="add-to-cart-btn" id="addToCartBtn" style="display:none">Do košíka</button>
+                <a id="amazonLink" href="https://www.amazon.com/stores/Mathias-Gocik/author/B0DZJ1WPP2" target="_blank" style="display:none">
+                    <button class="detail-btn amazon-btn" style="margin-top:10px;width:100%">Pozrieť na Amazone</button>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -354,6 +377,15 @@
             document.getElementById('modalImg').classList.remove('zoomed');
         }
 
+        // IMPORTANT FIX: Refresh cart count every time the page becomes visible
+        window.addEventListener('pageshow', function() {
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartCount();
+        });
+
+        // Also run on normal load
+        updateCartCount();
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeDetail();
         });
@@ -361,9 +393,6 @@
         document.getElementById('detailModal').addEventListener('click', function(e) {
             if (e.target === this) closeDetail();
         });
-
-        // Initialize
-        updateCartCount();
     </script>
 </body>
 </html>
