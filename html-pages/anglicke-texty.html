@@ -381,7 +381,7 @@
     <!-- INTRO -->
     <div class="intro-top">
         <h2>Anglické Knihy na Amazone</h2>
-        <p>Objavte anglické knihy a Kindle e-booky od autora <strong>Mathias Gocik</strong> na Amazone s duchovnou tematikou.</p>
+        <p>Objavte anglické knihy a Kindle e-booky od autora <strong>Mathias Gocik</strong> na Amazone.com s duchovnou tematikou.</p>
     </div>
     
     <!-- BACK TO HOME -->
@@ -404,6 +404,34 @@
         </div>
     </div>
 
+
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" class="detail-modal">
+        <div class="box">
+            <button class="close" onclick="closeDetail()">x</button>
+            <div class="modal-left">
+                <div class="image-container">
+                    <div class="nav-arrow prev" onclick="changeImage(-1)"><</div>
+                    <img id="modalImg" class="modal-img" src="" alt="" onclick="toggleZoom()">
+                    <div class="nav-arrow next" onclick="changeImage(1)">></div>
+                </div>
+                <div class="thumbnails" id="thumbnails"></div>
+            </div>
+            <div class="modal-right">
+                <h3 id="modalTitle"></h3>
+                <p class="desc" id="modalDesc"></p>
+                <div class="price-container">
+                    <div class="price" id="modalPrice"></div>
+                </div>
+                <button class="add-to-cart-btn" id="addToCartBtn" style="display:none">Do košíka</button>
+                <a id="amazonLink" href="https://www.amazon.com/stores/Mathias-Gocik/author/B0DZJ1WPP2" target="_blank" style="display:none">
+                    <button class="detail-btn amazon-btn" style="margin-top:10px;width:100%">Pozrieť na Amazone</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
     <!-- SCRIPTS -->
     <script>
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
