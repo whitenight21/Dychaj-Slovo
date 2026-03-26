@@ -121,13 +121,49 @@
         .intro-top i { font-style: italic; }
 
         /* CATEGORIES - 5 VISUAL CARDS */
-        .categories {
-            max-width: 1200px;
-            margin: 0 auto 80px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+        /* CATEGORIES - 5 VISUAL CARDS (2 on top, 3 below) */
+.categories {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    display: grid;
+    gap: 30px;
+}
+
+/* Large screens: 2 cards on first row, 3 on second row, both rows centered */
+@media (min-width: 901px) {
+    .categories {
+        grid-template-columns: repeat(3, 1fr);   /* Base is 3 columns */
+    }
+    
+    /* First two cards take full width of 1.5 columns each → centered row of 2 */
+    .categories .card:nth-child(1),
+    .categories .card:nth-child(2) {
+        grid-column: span 1;
+    }
+    
+    /* Last three cards take 1 column each → centered row of 3 */
+    .categories .card:nth-child(3),
+    .categories .card:nth-child(4),
+    .categories .card:nth-child(5) {
+        grid-column: span 1;
+    }
+    
+    /* Center the first row of 2 cards */
+    .categories::before,
+    .categories::after {
+        content: "";
+        grid-column: span 1;
+    }
+}
+
+/* Smaller screens: natural responsive flow (1 or 2 per row) */
+@media (max-width: 900px) {
+    .categories {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+        
         }
         .card {
             background: white;
