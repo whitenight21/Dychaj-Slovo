@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre Rodiny a Deti – Dýchaj Slovo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        /* HEADER - same as index.html */
+        .header {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+        .banner {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: block;
+        }
+        .profile-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            gap: 18px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            top: -140px;
+            z-index: 10;
+        }
+        .profile-left {
+            display: flex;
+            align-items: flex-end;
+            margin-left: 15px;
+        }
+        .profile-overlap {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+        .profile-name {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 50px;
+            color: #222;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0;
+            line-height: 1;
+            padding-bottom: 8px;
+            white-space: nowrap;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            display: inline-block;
+            background: #2c495e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: #3fcfd5;
+        }
+
+        /* PRODUCT SECTION */
+        .section {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 32px;
+            color: #2c495e;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section-product {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 350px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .section-product img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        .section-product h3 {
+            font-size: 16px;
+            color: #444;
+            margin: 8px 0 4px;
+            font-weight: 600;
+        }
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c495e;
+            margin: 0 0 10px;
+        }
+        .detail-btn {
+            background: #2c495e;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 6px 0;
+        }
+        .detail-btn:hover {
+            background: #3fcfd5;
+        }
+
+        /* DETAIL MODAL */
+        .detail-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .detail-modal.active {
+            display: flex;
+        }
+        .detail-modal .box {
+            background: #fff;
+            border-radius: 14px;
+            max-width: 900px;
+            max-height: 90vh;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        .detail-modal .close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+            background: none;
+            border: none;
+            z-index: 10;
+            font-weight: bold;
+        }
+        .detail-modal .close:hover { color: #000; }
+
+        .modal-left {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fafaa;
+            position: relative;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-height: 380px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .modal-img {
+            width: 100%;
+            max-height: 380px;
+            object-fit: contain;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+        .modal-img.zoomed {
+            transform: scale(1.8);
+            cursor: zoom-out;
+        }
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 5;
+            user-select: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+        .nav-arrow:hover {
+            background: #fff;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .nav-arrow.prev { left: 10px; }
+        .nav-arrow.next { right: 10px; }
+        .thumbnails {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 8px;
+        }
+        .thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            transition: border 0.2s;
+        }
+        .thumb:hover, .thumb.active {
+            border-color: #2c495e;
+        }
+
+        .modal-right {
+            flex: 1;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-content: center;
+        }
+        .modal-right h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #222;
+            margin: 0;
+        }
+        .modal-right .desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+        }
+        .price-container {
+            margin: 12px 0;
+        }
+        .modal-right .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c495e;
+        }
+        .add-to-cart-btn {
+            background: #2c495e;
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            align-self: flex-start;
+            min-width: 200px;
+            text-align: center;
+        }
+        .add-to-cart-btn:hover {
+            background: #3fcfd5;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .profile-row { top: -110px; }
+            .profile-name { font-size: 38px; bottom: -45px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FIXED CART BUTTON -->
+    <button class="cart-btn" onclick="window.location.href='../kosik.html'">
+        Košík
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- HEADER -->
+    <div class="header">
+        <img src="../assets/images/banner.png" alt="Dýchaj Slovo Banner" class="banner">
+        <div class="profile-row">
+            <div class="profile-left">
+                <img src="../assets/images/profile.jpg" alt="Mathias" class="profile-overlap">
+            </div>
+            <div class="profile-name">Dýchaj Slovo</div>
+        </div>
+    </div>
+
+    <!-- BACK TO HOME -->
+    <a href="../index.html" class="back-btn">← Späť na hlavnú stránku</a>
+
+    <!-- PRODUCT SECTION -->
+    <div class="section">
+        <h2>Pre Rodiny a Deti</h2>
+        <p>Deti sú najbližšie k Božiemu kráľovstvu. Tu nájdeš príbehy, aktivity a modlitby, ktoré hovoria ich jazykom.</p>
+        <p>Spoločne objavujeme v rodine, že Boh je Tata, ktorý sa raduje z detskej viery.</p>
+        <p>Vytlačený text poslaný poštou. Digitálny PDF text poslaný na váš e-mail.</p>
+
+        <div class="section-product">
+            <img src="../assets/covers/ADVENT-KIDScover.jpeg" alt="Advent Cover">
+            <h3>Rodinné Zamyslenia na Advent - Čítaj, Modli sa, Vyfarbuj, Tvor - Deti 2+</h3>
+            <div class="product-price">15 €</div>
+            <button class="detail-btn" onclick="openProductDetail(
+                'Rodinné Zamyslenia na Advent - Čítaj, Modli sa, Vyfarbuj, Tvor - Deti 2+',
+                '15 €',
+                'Adventný zošit pre rodinu s deťmi. V kruhu rodiny objavujte krásu Adventného obdobia čítaním Božieho Slova, modlitbami, maľovankami a tvorivými úlohami od 30. novembra do 25. decembra 2025. Denné evanjelia sú podľa rímskokatolíckeho liturgického kalendára. Produkt dostupný ako digitálny PDF. 62 strán. Poslaný na e-mail.',
+                '../assets/covers/ADVENT-KIDScover.jpeg',
+                ['../assets/covers/ADVENT-KIDScover.jpeg', '../assets/images/Adv_kids_p3.jpeg', '../assets/images/Adv_kids_p7.jpeg', '../assets/images/Adv_kids_p8.jpeg', '../assets/images/IMG_7256.jpeg', '../assets/images/IMG_7257.jpeg']
+            )">Detaily</button>
+        </div>
+
+        <div class="section-product">
+            <img src="../assets/covers/POSTcover.jpg" alt="Pôst">
+            <h3>Pôst - Čítaj, Modli sa, Vyfarbuj, Miluj - Deti 3+</h3>
+            <div class="product-price">15 €</div>
+            <button class="detail-btn" onclick="openProductDetail(
+                'Pôst - Čítaj, Modli sa, Vyfarbuj, Miluj - Deti 3+',
+                '15 €',
+                'Digitálna verzia A4 formát plná jednoduchých príbehov, modlitbičiek, pekných omalovánok a malých výziev na Pôst a Veľkú noc 2026. Denné evanjelia sú podľa rímskokatolíckeho liturgického kalendára. Produkt dostupný ako digitálny PDF. 100 strán. Poslaný na e-mail.',
+                '../assets/covers/POSTcover.jpg',
+                ['../assets/covers/POSTcover.jpg', '../assets/images/post2.jpg', '../assets/images/post3.jpg']
+            )">Detaily</button>
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" class="detail-modal">
+        <div class="box">
+            <button class="close" onclick="closeDetail()">x</button>
+            <div class="modal-left">
+                <div class="image-container">
+                    <div class="nav-arrow prev" onclick="changeImage(-1)"><</div>
+                    <img id="modalImg" class="modal-img" src="" alt="" onclick="toggleZoom()">
+                    <div class="nav-arrow next" onclick="changeImage(1)">></div>
+                </div>
+                <div class="thumbnails" id="thumbnails"></div>
+            </div>
+            <div class="modal-right">
+                <h3 id="modalTitle"></h3>
+                <p class="desc" id="modalDesc"></p>
+                <div class="price-container">
+                    <div class="price" id="modalPrice"></div>
+                </div>
+                <button class="add-to-cart-btn" id="addToCartBtn" style="display:none">Do košíka</button>
+                <a id="amazonLink" href="https://www.amazon.com/stores/Mathias-Gocik/author/B0DZJ1WPP2" target="_blank" style="display:none">
+                    <button class="detail-btn amazon-btn" style="margin-top:10px;width:100%">Pozrieť na Amazone</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            const el = document.getElementById('cartCount');
+            if (el) el.textContent = totalItems;
+        }
+
+        function addToCart(title, price, img) {
+            const existing = cart.find(item => item.title === title);
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({ title, price, img, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert('Pridané do košíka!');
+            closeDetail();
+        }
+
+        // Modal functions (same as index.html)
+        let galleryImages = [];
+        let currentIndex = 0;
+
+        function openProductDetail(title, price, desc, img, previewList) {
+            galleryImages = previewList;
+            currentIndex = previewList.indexOf(img) !== -1 ? previewList.indexOf(img) : 0;
+
+            document.getElementById('modalImg').src = galleryImages[currentIndex];
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('modalDesc').textContent = desc;
+
+            const addBtn = document.getElementById('addToCartBtn');
+            const amazonLink = document.getElementById('amazonLink');
+
+            if (title.includes('Amazon')) {
+                addBtn.style.display = 'none';
+                amazonLink.style.display = 'block';
+            } else {
+                addBtn.style.display = 'block';
+                amazonLink.style.display = 'none';
+                addBtn.onclick = () => addToCart(title, price, img);
+            }
+
+            const thumbs = document.getElementById('thumbnails');
+            thumbs.innerHTML = '';
+            galleryImages.forEach((src, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = 'thumb';
+                if (i === currentIndex) thumb.classList.add('active');
+                thumb.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIndex = i;
+                    document.getElementById('modalImg').src = src;
+                    updateThumbnails();
+                    resetZoom();
+                };
+                thumbs.appendChild(thumb);
+            });
+
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeDetail() {
+            document.getElementById('detailModal').classList.remove('active');
+            resetZoom();
+        }
+
+        function changeImage(step) {
+            currentIndex = (currentIndex + step + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImg').src = galleryImages[currentIndex];
+            updateThumbnails();
+            resetZoom();
+        }
+
+        function updateThumbnails() {
+            document.querySelectorAll('.thumb').forEach((t, i) => {
+                t.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function toggleZoom() {
+            const img = document.getElementById('modalImg');
+            img.classList.toggle('zoomed');
+        }
+
+        function resetZoom() {
+            document.getElementById('modalImg').classList.remove('zoomed');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDetail();
+        });
+
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDetail();
+        });
+
+        // Initialize
+        updateCartCount();
+    </script>
+</body>
+</html>
