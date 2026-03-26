@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veľká Noc - Detaily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; background: #f4f4f4; padding: 40px 20px; display: flex; justify-content: center; }
+        .product-page { background: white; max-width: 1000px; width: 100%; border-radius: 16px; display: flex; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .prod-left { flex: 1; padding: 30px; background: #fafafa; text-align: center; }
+        .prod-right { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        .main-img { width: 100%; border-radius: 12px; cursor: zoom-in; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #2c495e; text-decoration: none; font-weight: bold; }
+        h1 { font-family: 'Fredoka', sans-serif; color: #2c495e; margin: 0 0 20px; }
+        .price { font-size: 32px; font-weight: bold; color: #2c495e; margin: 20px 0; }
+        .add-btn { background: #2c495e; color: white; border: none; padding: 15px 30px; border-radius: 30px; cursor: pointer; font-size: 18px; font-weight: 600; }
+        .add-btn:hover { background: #3fcfd5; }
+        @media (max-width: 800px) { .product-page { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <div class="product-page">
+        <div class="prod-left">
+            <a href="javascript:history.back()" class="back-link">← Späť</a>
+            <img src="../assets/covers/VELKANOCcover.jpg" class="main-img" id="mainImg">
+        </div>
+        <div class="prod-right">
+            <h1>Veľká Noc - Čítaj, Modli sa, Vyfarbuj, Miluj</h1>
+            <p>Digitálna verzia A4 formát plná jednoduchých príbehov, modlitbičiek, pekných omalovánok a malých výziev na Veľkú noc 2026. Produkt dostupný ako digitálny PDF. 115 strán. Poslaný na e-mail.</p>
+            <div class="price">15 €</div>
+            <button class="add-btn" onclick="addToCart('Veľká Noc - Deti', 15, '../assets/covers/VELKANOCcover.jpg')">Do košíka</button>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(title, price, img) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existing = cart.find(item => item.title === title);
+            if (existing) { existing.quantity += 1; } 
+            else { cart.push({ title, price, img, quantity: 1 }); }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Pridané do košíka!');
+        }
+    </script>
+</body>
+</html>
