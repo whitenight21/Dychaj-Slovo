@@ -6,6 +6,20 @@
     <title>Veľká Noc - Detaily</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        body { font-family: 'Open Sans', Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
+        .header { position: relative; max-width: 1200px; margin: 0 auto 30px; text-align: left; }
+        .banner { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: block; }
+        .profile-row { display: flex; align-items: flex-end; justify-content: flex-start; gap: 18px; max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; top: -140px; z-index: 10; }
+        .profile-overlap { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid white; box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+        .profile-name { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 60px; color: #222; position: absolute; left: 50%; transform: translateX(-50%); z-index: 15; }
+        .back-btn { display: block; margin: 20px auto 40px; background: #2c495e; color: white; padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; text-align: center; max-width: 220px; transition: 0.3s; }
+        .back-btn:hover { background: #3fcfd5; }
+        .intro-top { max-width: 900px; margin: -90px auto 60px; text-align: center; font-size: 18px; line-height: 1.6; }
+        .products-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 20px; }
+
+        .cart-btn { position: fixed; top: 15px; right: 15px; background: #2c495e; color: white; border: none; padding: 8px 14px; border-radius: 30px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; z-index: 1000; font-size: 20px; }
+        .cart-count { background: #ff4444; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+        
         body { font-family: 'Open Sans', sans-serif; background: #f4f4f4; padding: 40px 20px; display: flex; justify-content: center; }
         .product-page { background: white; max-width: 1000px; width: 100%; border-radius: 16px; display: flex; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .prod-left { flex: 1; padding: 30px; background: #fafafa; text-align: center; }
