@@ -145,19 +145,13 @@
 </div>
 
 <script>
-    // Force reload the latest cart every time the page opens
-    let cart = [];
-
-    function loadCart() {
-        cart = JSON.parse(localStorage.getItem('cart')) || [];
-    }
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     const container = document.getElementById('items');
     const totalRow = document.getElementById('totalRow');
     const continueBtn = document.getElementById('continueBtn');
 
     function renderCart() {
-        loadCart();                    // Always load fresh data
         container.innerHTML = '';
 
         if (cart.length === 0) {
@@ -204,6 +198,7 @@
         totalRow.style.display = 'block';
         continueBtn.style.display = 'block';
 
+        localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
     }
 
@@ -211,12 +206,11 @@
         let newQty = (cart[index].quantity || 1) + change;
         if (newQty < 1) newQty = 1;
         cart[index].quantity = newQty;
-        renderCart();
+        renderCart();           /* This was the missing line */
     }
 
     function removeItem(index) {
         cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
         renderCart();
     }
 
@@ -224,16 +218,10 @@
         const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
         const countEl = document.getElementById('cartCount');
         if (countEl) countEl.textContent = totalItems;
-
-        try {
-            if (window.parent && window.parent.document.getElementById('cartCount')) {
-                window.parent.document.getElementById('cartCount').textContent = totalItems;
-            }
-        } catch(e) {}
     }
 
-    // Run when page loads
-    window.addEventListener('load', renderCart);
+    // Initialize
+    renderCart();
 </script>
 </body>
 </html>
