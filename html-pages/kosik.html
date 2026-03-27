@@ -206,19 +206,36 @@
         let newQty = (cart[index].quantity || 1) + change;
         if (newQty < 1) newQty = 1;
         cart[index].quantity = newQty;
-        renderCart();           /* This was the missing line */
+        renderCart();
     }
 
     function removeItem(index) {
         cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
         renderCart();
+        updateCartCount();           // Force update everywhere
     }
 
     function updateCartCount() {
         const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        
+        // Update on current page
         const countEl = document.getElementById('cartCount');
         if (countEl) countEl.textContent = totalItems;
+
+        // Update on index.html when returning
+        try {
+            if (window.parent && window.parent.document.getElementById('cartCount')) {
+                window.parent.document.getElementById('cartCount').textContent = totalItems;
+            }
+        } catch(e) {}
     }
+
+    // Refresh everything when page becomes visible again (important for mobile)
+    window.addEventListener('pageshow', function() {
+        cart = JSON.parse(localStorage.getItem('cart')) || [];
+        renderCart();
+    });
 
     // Initialize
     renderCart();
