@@ -150,6 +150,39 @@
             margin: 8px 0;
         }
 
+    /* UNIFIED CART BUTTON */
+    .cart-btn {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background: #2c495e;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        z-index: 1000;
+        font-size: 20px;
+    }
+    .cart-btn:hover { background: #3fcfd5; }
+    .cart-count {
+        background: #ff4444;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+        
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .profile-row { top: -110px; }
@@ -181,12 +214,9 @@
         <h2>Pre Rodiny a Deti</h2>
         <p>Deti sú najbližšie k Božiemu kráľovstvu. Tu nájdeš príbehy, aktivity a modlitby, ktoré hovoria ich jazykom.</p>
         <p>Spoločne objavujeme v rodine, že Boh je Tata, ktorý sa raduje z detskej viery.</p>
-        <p>Vytlačený text poslaný poštou. Digitálny PDF text poslaný na váš e-mail.</p>
+        <p>Digitálny PDF sa posiela na váš e-mail.</p>
     </div>
     
-    <!-- BACK TO HOME -->
-    <a href="../index.html" class="back-btn">← Späť na hlavnú stránku</a>
-
     <!-- PRODUCT CARDS -->
     <div class="products-grid">
         
@@ -218,6 +248,11 @@
         </a>
     </div>
 
+
+    <!-- BACK TO HOME -->
+    <a href="../index.html" class="back-btn">← Späť na hlavnú stránku</a>
+
+    
     <!-- SCRIPTS -->
     <script>
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
