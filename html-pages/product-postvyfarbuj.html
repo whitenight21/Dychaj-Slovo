@@ -194,6 +194,39 @@
             transform: scale(1.05);
         }
 
+    /* UNIFIED CART BUTTON */
+    .cart-btn {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background: #2c495e;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        z-index: 1000;
+        font-size: 20px;
+    }
+    .cart-btn:hover { background: #3fcfd5; }
+    .cart-count {
+        background: #ff4444;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+        
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .product-main {
